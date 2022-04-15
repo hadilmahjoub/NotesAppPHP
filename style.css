@@ -1,0 +1,47 @@
+body{
+    display: inline;
+    justify-content: center;
+}
+
+header {
+    color: grey;
+    display: flex;
+    justify-content: center;
+    margin: 25px 0px;
+}
+
+a {
+    margin: 0px 10px ;
+    font-size: 25px;
+}
+
+
+#sub {
+    border: none;
+    background:none;
+    color: grey;
+    position: relative;
+    top: -235px;
+    right: -1260px;
+}
+
+#sub:hover{
+    color: black;
+}
+
+#tra {
+    border: none;
+    background:none;
+    color: grey;
+    position: relative;
+    top: -80px;
+    right: -230px;
+}
+
+#tra:hover {
+    color: red;
+}
+
+input,textarea{
+    position: relative;
+}
