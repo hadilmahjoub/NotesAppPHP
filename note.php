@@ -1,18 +1,19 @@
 <?php
 session_start();
 
-
-if (!isset($_SESSION["todos"])) {
-    $_SESSION['todos']=array();
-}
-
 if (isset($_POST["submit"])) {
-    $title = $_POST["title"];
-    $text = $_POST["text"];
-    $todo = array($title=>'title',$text=>'text');
-    array_push($_SESSION['todos'],$todo);
+    if (($_POST["title"]) != "" & ($_POST["text"]) != "") {
+        $title = $_POST["title"];
+        $text = $_POST["text"];
+        $todo = array('title' => $title, 'text' => $text);
+        array_push($_SESSION['todos'], $todo);
+    }
+    header('location:home.php');
 }
 
+if (isset($_POST["trash"])) {
+    unset($_SESSION["todos"][$_POST["key"]]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,32 +35,45 @@ if (isset($_POST["submit"])) {
     </nav>
 
     <div class="container">
+        <!--Container-->
+
         <header>
             <h1>Here you can find your pined notes!</h1>
         </header>
 
-        <?php 
-            print_r($_SESSION);
+        <?php
+        // print_r($_SESSION);
         ?>
 
-        <?php   // foreach start
-            foreach ($_SESSION['todos'] as $key => $value) {
-        ?>        
-            <div class="notepost">
-                <div class="titlepost"> <b><?= $value['title'] ?></b> </div>
-                <div class="textpost"><?= $value['text'] ?></div>
-                <div>
-                    <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+        <?php
+        if (isset($_SESSION['todos'])) {    // if
+            foreach ($_SESSION['todos'] as $key => $value) {    // foreach START
+        ?>
+                <form method="POST" class="notepost">
+                    <!--Form for the delete-->
+                    <div class="titlepost"> <b><?= $value['title'] ?></b> </div>
+                    <div class="textpost"><?= $value['text'] ?></div>
+                    <input type="hidden" name="key" value="<?= $key ?>">
+                    <div>
+                        <button class="trash" name="trash"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                </form>
+                <!--Form for the delete END-->
+
+            <?php
+            }   // foreach END
+        } else {    //else
+            ?>
+            <div>
+                <h1>Empty</h1>
             </div>
-
-        <?php   // foreach end
-            }
+        <?php
+        }   // ifelse END
         ?>
-            
-        
 
     </div>
+    <!--Container-->
+
 </body>
 
 </html>

@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION["todos"])) {
+    $_SESSION['todos'] = array();
+}
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -25,11 +29,10 @@ session_start();
             <h1>Enter a note to pin!</h1>
         </header>
         <div class="noteinput">
-            <form action="note.php" method="post">
+            <form action="note.php" method="post" class="myform">
                 <input type="text" name="title" id="title" placeholder="Title"><br>
                 <textarea name="text" id="text" cols="30" rows="10" placeholder="Note..."></textarea>
-                <button type="submit"><i class="fa-solid fa-thumbtack"></i></button>
-
+                <button type="submit" name="submit"><i class="fa-solid fa-thumbtack"></i></button>
             </form>
         </div>
     </div>
