@@ -54,39 +54,49 @@ if (isset($_POST["trash"])) {
         <?php
         // print_r($_SESSION);
         ?>
-
-        <?php
-        if (isset($_SESSION['todos'])) {    // if
-            foreach ($_SESSION['todos'] as $key => $value) {    // foreach START
-        ?>
-                <form method="POST" class="notepost" style="display: inline-block">
-                    <!--Form for the delete-->
-                    <div class="card" style="width: 18rem; display: inline-block">
-                        <div class="card-body">
-                            <div class="card-title"> <b><?= $value['title'] ?></b> </div>
-                            <hr>
-                            <div class="card-text"><?= $value['text'] ?></div>
-                            <input type="hidden" name="key" value="<?= $key ?>">
-                            <div>
-                                <button class="trash" name="trash" id="tra"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </form>
-                <!--Form for the delete END-->
-
+        <div class="row align-items-start">
+            <!--row-->
             <?php
-            }   // foreach END
-        } else {    //else
+            if (isset($_SESSION['todos'])) {    // if
+                foreach ($_SESSION['todos'] as $key => $value) {    // foreach START
             ?>
-            <div>
-                <h1>Empty</h1>
-            </div>
-        <?php
-        }   // ifelse END
-        ?>
+                    <div class="col-sm-12 col-md-4 col-lg-3 cols" >
+                        <!--col-->
+                        <form method="POST" class="notepost" style="display: inline-block">
+                            <!--Form for the delete-->
+                            <div class="card" style="width: 18rem; display: inline-block">
+                                <div class="card-body">
+                                    <div class="wrapper">
+                                        <div class="card-title"> <b><?= $value['title'] ?></b> </div>
+                                        <button class="trash" name="trash" id="tra"><i class="fa-solid fa-trash-can"></i></button>
+                                    </div>
+                                    <hr>
+                                    <div class="card-text"><?= $value['text'] ?></div>
+                                    <input type="hidden" name="key" value="<?= $key ?>">
+
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <!--Form for the delete END-->
+                    </div>
+                    <!--col-->
+
+
+                <?php
+                }   // foreach END
+            } else {    //else
+                ?>
+                <div>
+                    <h1>Empty</h1>
+                </div>
+            <?php
+            }   // ifelse END
+            ?>
+        </div>
+        <!--row-->
+
 
     </div>
     <!--Container-->

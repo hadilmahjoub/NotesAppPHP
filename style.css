@@ -34,8 +34,6 @@ a {
     background:none;
     color: grey;
     position: relative;
-    top: -80px;
-    right: -230px;
 }
 
 #tra:hover {
@@ -44,4 +42,14 @@ a {
 
 input,textarea{
     position: relative;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+
+.cols {
+    margin: 20px 0px ;
 }
